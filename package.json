@@ -1,0 +1,17 @@
+{
+  "name": "kowlon-tech-blog",
+  "version": "1.0.0",
+  "description": "Personal tech blog built with Hugo and Stack theme",
+  "scripts": {
+    "build": "hugo --minify",
+    "dev": "hugo server -D",
+    "clean": "rm -rf public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kowlon/personal-blog"
+  },
+  "keywords": ["hugo", "blog", "devops", "tech"],
+  "author": "Kowlon",
+  "license": "MIT"
+}

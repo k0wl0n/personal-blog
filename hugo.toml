@@ -1,0 +1,79 @@
+baseURL = "https://kowlon.my.id"
+languageCode = "en-us"
+title = "Kowlon's Tech Blog"
+theme = "hugo-theme-stack"
+
+# Build configuration
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+enableRobotsTXT = true
+enableGitInfo = true
+enableEmoji = true
+
+# Pagination
+[pagination]
+  pagerSize = 10
+  path = "page"
+
+# Syntax highlighting
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github-dark"
+    lineNos = true
+    lineNumbersInTable = true
+    tabWidth = 4
+
+# Menu configuration
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "archives"
+    name = "Archives"
+    url = "/archives/"
+    weight = 20
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 30
+
+# Site parameters
+[params]
+  mainSections = ["posts"]
+  featuredImageField = "image"
+  rssFullContent = true
+  favicon = "/favicon.ico"
+  
+  [params.footer]
+    since = 2024
+    customText = "Senior DevOps Engineer sharing technical insights"
+  
+  [params.dateFormat]
+    published = "Jan 02, 2006"
+    lastUpdated = "Jan 02, 2006 15:04 MST"
+  
+  [params.sidebar]
+    emoji = "🚀"
+    subtitle = "DevOps Engineer & Cloud Architect"
+    avatar = "/images/avatar.jpg"
+  
+  [params.article]
+    math = true
+    toc = true
+    readingTime = true
+    license = ""
+  
+  [params.comments]
+    enabled = false
+  
+  [params.widgets]
+    homepage = ["recent", "categories", "tag-cloud"]
+    page = ["toc"]
