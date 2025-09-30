@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hackintosh on Kowlon's Tech Blog</title><link>https://kowlon.my.id/tags/hackintosh/</link><description>Recent content in Hackintosh on Kowlon's Tech Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Sep 2025 20:47:29 +0700</lastBuildDate><atom:link href="https://kowlon.my.id/tags/hackintosh/index.xml" rel="self" type="application/rss+xml"/><item><title>Perjalanan Panjang Bersama macOS - dari Hobi ke Passion</title><link>https://kowlon.my.id/posts/macos-journey-from-hobby-to-passion/</link><pubDate>Fri, 20 Dec 2024 10:00:00 +0700</pubDate><guid>https://kowlon.my.id/posts/macos-journey-from-hobby-to-passion/</guid><description>&lt;h2 id="awal-mula-ketertarikan-dengan-macos"&gt;Awal Mula Ketertarikan dengan macOS
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://kowlon.my.id/posts/macos-journey-from-hobby-to-passion/macos.jpeg"
+width="1360"
+height="768"
+srcset="https://kowlon.my.id/posts/macos-journey-from-hobby-to-passion/macos_hu_3b73110cb26e9763.jpeg 480w, https://kowlon.my.id/posts/macos-journey-from-hobby-to-passion/macos_hu_b9bb4a137ebd2aa4.jpeg 1024w"
+loading="lazy"
+alt="macOS Journey"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="425px"
+&gt;&lt;/p&gt;
+&lt;p&gt;Pertama tahu ada Mac itu ketika OS masih Tiger, coba browsing-browsing tipis ngulik-ngulik apa bisa install Mac OS di laptop kentang. Ternyata pada zaman itu ada yang namanya &lt;strong&gt;hackintosh&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Setelah serius research akhirnya dapat jawaban jika hackintosh itu:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Bisa di install di intel based x86 CPU&lt;/strong&gt; dengan limitasi di setiap seri CPU, artinya ga bisa support di semua intel based juga, masalahnya prosesor saya AMD&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Driver VGA&lt;/strong&gt; itu bisa di install tanpa kendala biasanya di GPU intel atau radeon, karena iMac jaman dulu itu justru lebih familiar dengan radeon GPU. Masalahnya VGA saya NVIDIA&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Masalah kompatibilitas lain&lt;/strong&gt; seperti chipset, network card, audio card, dll&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sulit bikin booting OSX&lt;/strong&gt; jika pakai Windows (belom punya Mac beneran)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="spesifikasi-laptop-kentang-pertama"&gt;Spesifikasi Laptop Kentang Pertama
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Acer Aspire 4520G&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AMD Mobile Turion 64 X2 TL-60&lt;/li&gt;
+&lt;li&gt;Nvidia Nforce 630M&lt;/li&gt;
+&lt;li&gt;2GB DDR2 Memory&lt;/li&gt;
+&lt;li&gt;160 GB SATA HDD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sangat kentang bukan?&lt;/p&gt;
+&lt;h2 id="perjuangan-install-hackintosh"&gt;Perjuangan Install Hackintosh
+&lt;/h2&gt;&lt;p&gt;Long story short akhirnya belajar:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install bikin booting Mac dari Windows&lt;/li&gt;
+&lt;li&gt;Fixing gagal booting&lt;/li&gt;
+&lt;li&gt;Patch kexts (semacam drivers)&lt;/li&gt;
+&lt;li&gt;Re-partition disk&lt;/li&gt;
+&lt;li&gt;Mainan di partition type EFI/MBR/GPT&lt;/li&gt;
+&lt;li&gt;Kernel panic dll&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dengan penuh perjuangan dan learning, akhirnya berhasil install OSX di laptop di &lt;strong&gt;2010&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Pada saat itu saya menyadari perbedaan Mac dan Windows dengan spek yang sama, editing gambar video lebih smooth tapi karena ini bukan official hardware tetap ada limitasi di kompatibilitas hardware lain, contoh misal ga bisa jalan speaker nya sebelah atau port USB cuma bisa jalan 1 saja.&lt;/p&gt;
+&lt;h2 id="perjalanan-hackintosh-selanjutnya"&gt;Perjalanan Hackintosh Selanjutnya
+&lt;/h2&gt;&lt;p&gt;Next success install di PC dan Laptop lain:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;AMD Phenom II X4 PC&lt;/strong&gt; → OS X 10.8 Mountain Lion&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intel i5 Lenovo Z400&lt;/strong&gt; → Mac OS X 10.6 Snow Leopard&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AMD E350 Asus EEE PC 1215B&lt;/strong&gt; → Mac OS X 10.6 Snow Leopard&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Setup Ryzentosh di Ryzen 3500x&lt;/strong&gt; - saya sempat bikin racikan nya di repository saya&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="era-modern-hackintosh"&gt;Era Modern Hackintosh
+&lt;/h2&gt;&lt;p&gt;And this day, install hackintosh itu bisa lebih mudah menggunakan &lt;strong&gt;OpenCore&lt;/strong&gt;. Dan yang lebih geleng-geleng kepala lagi sekarang bisa running di atas &lt;strong&gt;Docker&lt;/strong&gt;!&lt;/p&gt;
+&lt;h2 id="akhirnya-merasakan-mac-resmi"&gt;Akhirnya Merasakan Mac Resmi
+&lt;/h2&gt;&lt;p&gt;Alhamdulillah sempat merasakan juga hardware Mac official ga hack-hackan lagi beberapa hardware Mac:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;MacBook Pro 2017 i5&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MacBook Pro M1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MacBook Pro M2&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MacBook Pro M4 Pro&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="hikmah-dan-relevansi-dengan-karier"&gt;Hikmah dan Relevansi dengan Karier
+&lt;/h2&gt;&lt;p&gt;Dari perjalanan ini, saya belajar bahwa &lt;strong&gt;hobi ngoprek bisa berubah jadi passion&lt;/strong&gt;. Proses memahami:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hardware&lt;/li&gt;
+&lt;li&gt;Software&lt;/li&gt;
+&lt;li&gt;Instalasi&lt;/li&gt;
+&lt;li&gt;Troubleshooting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Semuanya memperkaya pengetahuan. Sampai akhirnya sangat relevan dengan dunia yang saya tekuni sekarang: &lt;strong&gt;DevOps &amp;amp; Infrastructure&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Kadang hal kecil yang dimulai dari rasa penasaran justru bisa mengarahkan kita ke karier dan dunia kerja yang kita sukai.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Artikel ini diadaptasi dari post LinkedIn saya tentang perjalanan panjang bersama macOS.&lt;/em&gt;&lt;/p&gt;</description></item></channel></rss>

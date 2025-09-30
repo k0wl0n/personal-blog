@@ -1,24 +1,29 @@
 ---
-title: "Too Many Tickets, Not Enough Time? Discover the AI Hack That's Saving Our Sanity!"
+title: "AI-Powered Ticketing System Automation: Reducing Manual Effort by 50% with RAG Technology"
 date: 2024-12-20T11:00:00+07:00
 draft: false
-author: "Kowlon"
+author: "Wahyu Anggana (Kowlon)"
 description: "How we revolutionized our infrastructure team's workflow by automating first-level ticket handling with AI and RAG technology, reducing manual effort by 50%."
 tags: ["ai", "automation", "devops", "infrastructure", "rag", "ticketing-system"]
 categories: ["DevOps", "AI", "Automation"]
-image: "featured-image.jpg"
 slug: "ai-ticketing-system-automation"
----
+resources:
+- name: "Technical Documentation"
+  src: "/ticketing-system.pdf"
+  title: "AI Ticketing System - Technical Implementation Guide"
+---   
 
 ## The Challenge: Drowning in Tickets
 
-Our infrastructure team has been juggling **~1,300 request logs**, eating up **50% of their daily time**. 📊
+![ticketing](ticketing.png)  
+
+Our infrastructure team has been juggling **~1,300 request logs**, eating up **50% of their daily time**.
 
 With recent team size reductions, the pressure is mounting, leading to:
-- ⏰ Slower response times
-- 📈 Increased workload per engineer
-- 😰 Team burnout and decreased morale
-- 🔄 Less time for innovation and strategic work
+- Slower response times
+- Increased workload per engineer
+- Team burnout and decreased morale
+- Less time for innovation and strategic work
 
 ## The Solution: AI-Powered Ticket Automation
 
@@ -50,13 +55,13 @@ RAG (Retrieval-Augmented Generation) combines:
 
 ## Results: Game-Changing Impact
 
-✅ **Reducing manual effort** - 50% reduction in time spent on routine tickets
+**Reducing manual effort** - 50% reduction in time spent on routine tickets
 
-✅ **Speeding up response times** - Average response time improved from hours to minutes
+**Speeding up response times** - Average response time improved from hours to minutes
 
-✅ **Empowering engineers to focus on innovation** - More time for strategic infrastructure improvements
+**Empowering engineers to focus on innovation** - More time for strategic infrastructure improvements
 
-✅ **Boosting team morale and efficiency** - Less repetitive work, more meaningful contributions
+**Boosting team morale and efficiency** - Less repetitive work, more meaningful contributions
 
 ## Technical Architecture
 
@@ -95,14 +100,25 @@ graph TD
 - **Advanced NLP**: Better understanding of context and nuance
 - **Integration Expansion**: Connect with more tools in our DevOps pipeline
 
+## Download Technical Documentation
+
+For detailed implementation guidelines, architecture diagrams, and code examples, download our comprehensive technical documentation:
+
+**[📄 Download Technical Implementation Guide (PDF)](/ticketing-system.pdf)**
+
+This document includes:
+- Detailed system architecture
+- Implementation code samples
+- Configuration examples
+- Performance metrics and benchmarks
+- Troubleshooting guide
+
 ## Conclusion
 
-Let's revolutionize how we work, scale smarter, and keep our infrastructure rock-solid! 💪💻
+This approach revolutionizes how we work, enables smarter scaling, and keeps our infrastructure rock-solid.
 
 The combination of AI and human expertise isn't about replacing engineers—it's about empowering them to focus on what they do best: solving complex problems and driving innovation.
 
 ---
 
 *This post shares our real-world experience implementing AI automation in infrastructure operations. Results may vary based on your specific environment and use cases.*
-
-**Tags:** #AI #Automation #TeamEfficiency #TechInnovation #ProblemSolving

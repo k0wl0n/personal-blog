@@ -2,11 +2,10 @@
 title: "Building a Universal File Manager Middleware for Multi-Cloud Storage"
 date: 2024-12-20T12:00:00+07:00
 draft: false
-author: "Kowlon"
+author: "Wahyu Anggana (Kowlon)"
 description: "How we built a unified file management system that seamlessly integrates multiple cloud storage providers through a single API interface."
 tags: ["middleware", "cloud-storage", "api", "microservices", "devops", "architecture"]
 categories: ["Software Architecture", "Cloud Computing", "DevOps"]
-image: "featured-image.jpg"
 slug: "file-manager-middleware-cloud-storage"
 ---
 
@@ -20,10 +19,10 @@ In today's multi-cloud world, organizations often find themselves using multiple
 - **Local storage** for development and testing
 
 Each provider has its own:
-- 🔧 API specifications
-- 🔐 Authentication mechanisms
-- 📝 Data formats and structures
-- 🚀 Performance characteristics
+- API specifications
+- Authentication mechanisms
+- Data formats and structures
+- Performance characteristics
 
 This fragmentation creates complexity for developers and operations teams.
 
@@ -33,15 +32,15 @@ We built a middleware layer that provides a **unified API interface** for all cl
 
 ### Key Features
 
-✅ **Provider Agnostic**: Single API for multiple cloud providers
+**Provider Agnostic**: Single API for multiple cloud providers
 
-✅ **Seamless Integration**: Drop-in replacement for existing storage calls
+**Seamless Integration**: Drop-in replacement for existing storage calls
 
-✅ **Performance Optimized**: Intelligent routing and caching
+**Performance Optimized**: Intelligent routing and caching
 
-✅ **Security First**: Centralized authentication and authorization
+**Security First**: Centralized authentication and authorization
 
-✅ **Monitoring & Observability**: Comprehensive logging and metrics
+**Monitoring & Observability**: Comprehensive logging and metrics
 
 ## Architecture Overview
 
@@ -176,19 +175,19 @@ curl -X GET \
 ## Benefits Achieved
 
 ### For Developers
-- 🚀 **Faster Development**: Single API to learn and use
-- 🔧 **Easier Testing**: Mock providers for unit tests
-- 📚 **Better Documentation**: Unified API documentation
+- **Faster Development**: Single API to learn and use
+- **Easier Testing**: Mock providers for unit tests
+- **Better Documentation**: Unified API documentation
 
 ### For Operations
-- 📊 **Centralized Monitoring**: Single dashboard for all storage
-- 💰 **Cost Optimization**: Intelligent provider selection
-- 🔒 **Enhanced Security**: Centralized access control
+- **Centralized Monitoring**: Single dashboard for all storage
+- **Cost Optimization**: Intelligent provider selection
+- **Enhanced Security**: Centralized access control
 
 ### For Business
-- 🏃‍♂️ **Faster Time to Market**: Reduced development complexity
-- 💵 **Cost Savings**: Optimized storage costs
-- 🔄 **Vendor Flexibility**: Easy provider switching
+- **Faster Time to Market**: Reduced development complexity
+- **Cost Savings**: Optimized storage costs
+- **Vendor Flexibility**: Easy provider switching
 
 ## Monitoring & Observability
 
@@ -238,5 +237,3 @@ The key to success is balancing simplicity with functionality, ensuring the midd
 ---
 
 *This architecture has been successfully deployed in production, handling millions of file operations daily across multiple cloud providers.*
-
-**Tags:** #CloudStorage #Middleware #API #DevOps #Architecture #MultiCloud

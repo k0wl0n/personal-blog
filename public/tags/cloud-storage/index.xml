@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cloud-Storage on Kowlon's Tech Blog</title><link>https://kowlon.my.id/tags/cloud-storage/</link><description>Recent content in Cloud-Storage on Kowlon's Tech Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Sep 2025 20:47:29 +0700</lastBuildDate><atom:link href="https://kowlon.my.id/tags/cloud-storage/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a Universal File Manager Middleware for Multi-Cloud Storage</title><link>https://kowlon.my.id/posts/file-manager-middleware-cloud-storage/</link><pubDate>Fri, 20 Dec 2024 12:00:00 +0700</pubDate><guid>https://kowlon.my.id/posts/file-manager-middleware-cloud-storage/</guid><description>&lt;h2 id="the-problem-cloud-storage-fragmentation"&gt;The Problem: Cloud Storage Fragmentation
+&lt;/h2&gt;&lt;p&gt;In today&amp;rsquo;s multi-cloud world, organizations often find themselves using multiple cloud storage providers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AWS S3&lt;/strong&gt; for primary storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Google Cloud Storage&lt;/strong&gt; for analytics workloads&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Azure Blob Storage&lt;/strong&gt; for enterprise integration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Local storage&lt;/strong&gt; for development and testing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each provider has its own:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;API specifications&lt;/li&gt;
+&lt;li&gt;Authentication mechanisms&lt;/li&gt;
+&lt;li&gt;Data formats and structures&lt;/li&gt;
+&lt;li&gt;Performance characteristics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This fragmentation creates complexity for developers and operations teams.&lt;/p&gt;
+&lt;h2 id="the-solution-universal-file-manager-middleware"&gt;The Solution: Universal File Manager Middleware
+&lt;/h2&gt;&lt;p&gt;We built a middleware layer that provides a &lt;strong&gt;unified API interface&lt;/strong&gt; for all cloud storage operations, abstracting away provider-specific implementations.&lt;/p&gt;
+&lt;h3 id="key-features"&gt;Key Features
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Provider Agnostic&lt;/strong&gt;: Single API for multiple cloud providers&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Seamless Integration&lt;/strong&gt;: Drop-in replacement for existing storage calls&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Performance Optimized&lt;/strong&gt;: Intelligent routing and caching&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Security First&lt;/strong&gt;: Centralized authentication and authorization&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Monitoring &amp;amp; Observability&lt;/strong&gt;: Comprehensive logging and metrics&lt;/p&gt;
+&lt;h2 id="architecture-overview"&gt;Architecture Overview
+&lt;/h2&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-mermaid" data-lang="mermaid"&gt;graph TD
+A[Client Application] --&amp;gt; B[File Manager API]
+B --&amp;gt; C[Authentication Layer]
+C --&amp;gt; D[Provider Router]
+D --&amp;gt; E[AWS S3 Adapter]
+D --&amp;gt; F[GCS Adapter]
+D --&amp;gt; G[Azure Adapter]
+D --&amp;gt; H[Local Storage Adapter]
+E --&amp;gt; I[AWS S3]
+F --&amp;gt; J[Google Cloud Storage]
+G --&amp;gt; K[Azure Blob Storage]
+H --&amp;gt; L[Local File System]
+B --&amp;gt; M[Caching Layer]
+B --&amp;gt; N[Monitoring &amp;amp; Logging]
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="core-components"&gt;Core Components
+&lt;/h2&gt;&lt;h3 id="1-provider-abstraction-layer"&gt;1. Provider Abstraction Layer
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;"&gt;&lt;tr&gt;&lt;td style="vertical-align:top;padding:0;margin:0;border:0;"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;1
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;2
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;3
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;4
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;5
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;6
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-typescript" data-lang="typescript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ff7b72"&gt;interface&lt;/span&gt; StorageProvider {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; upload(file: &lt;span style="color:#ff7b72"&gt;File&lt;/span&gt;, path: &lt;span style="color:#ff7b72"&gt;string&lt;/span&gt;)&lt;span style="color:#ff7b72;font-weight:bold"&gt;:&lt;/span&gt; Promise&amp;lt;&lt;span style="color:#7ee787"&gt;UploadResult&lt;/span&gt;&amp;gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; download(path: &lt;span style="color:#ff7b72"&gt;string&lt;/span&gt;)&lt;span style="color:#ff7b72;font-weight:bold"&gt;:&lt;/span&gt; Promise&amp;lt;&lt;span style="color:#7ee787"&gt;File&lt;/span&gt;&amp;gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#ff7b72"&gt;delete&lt;/span&gt;(path: &lt;span style="color:#ff7b72"&gt;string&lt;/span&gt;)&lt;span style="color:#ff7b72;font-weight:bold"&gt;:&lt;/span&gt; Promise&amp;lt;&lt;span style="color:#7ee787"&gt;boolean&lt;/span&gt;&amp;gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; list(prefix?: &lt;span style="color:#ff7b72"&gt;string&lt;/span&gt;)&lt;span style="color:#ff7b72;font-weight:bold"&gt;:&lt;/span&gt; Promise&amp;lt;&lt;span style="color:#7ee787"&gt;FileMetadata&lt;/span&gt;&lt;span style="color:#f85149"&gt;[]&lt;/span&gt;&amp;gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; getMetadata(path: &lt;span style="color:#ff7b72"&gt;string&lt;/span&gt;)&lt;span style="color:#ff7b72;font-weight:bold"&gt;:&lt;/span&gt; Promise&amp;lt;&lt;span style="color:#7ee787"&gt;FileMetadata&lt;/span&gt;&amp;gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="2-configuration-management"&gt;2. Configuration Management
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;"&gt;&lt;tr&gt;&lt;td style="vertical-align:top;padding:0;margin:0;border:0;"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 1
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 2
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 3
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 4
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 5
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 6
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 7
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 8
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 9
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;10
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;11
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;12
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;13
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;14
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;15
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;16
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#7ee787"&gt;providers&lt;/span&gt;:&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;aws&lt;/span&gt;:&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;region&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;us-east-1&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;bucket&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;my-app-storage&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;credentials&lt;/span&gt;:&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;access_key&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;${AWS_ACCESS_KEY}&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;secret_key&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;${AWS_SECRET_KEY}&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;gcs&lt;/span&gt;:&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;project_id&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;my-project&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;bucket&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;my-app-gcs-storage&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;credentials_path&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;/path/to/service-account.json&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;azure&lt;/span&gt;:&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;account_name&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;myaccount&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;container&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;my-container&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#7ee787"&gt;connection_string&lt;/span&gt;:&lt;span style="color:#6e7681"&gt; &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;${AZURE_STORAGE_CONNECTION}&lt;/span&gt;&lt;span style="color:#6e7681"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="3-intelligent-routing"&gt;3. Intelligent Routing
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;"&gt;&lt;tr&gt;&lt;td style="vertical-align:top;padding:0;margin:0;border:0;"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 1
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 2
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 3
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 4
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 5
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 6
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 7
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 8
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt; 9
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-typescript" data-lang="typescript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ff7b72"&gt;class&lt;/span&gt; ProviderRouter {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; route(operation: &lt;span style="color:#ff7b72"&gt;StorageOperation&lt;/span&gt;)&lt;span style="color:#ff7b72;font-weight:bold"&gt;:&lt;/span&gt; StorageProvider {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#8b949e;font-style:italic"&gt;// Route based on:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8b949e;font-style:italic"&gt;&lt;/span&gt; &lt;span style="color:#8b949e;font-style:italic"&gt;// - File type and size
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8b949e;font-style:italic"&gt;&lt;/span&gt; &lt;span style="color:#8b949e;font-style:italic"&gt;// - Geographic location
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8b949e;font-style:italic"&gt;&lt;/span&gt; &lt;span style="color:#8b949e;font-style:italic"&gt;// - Cost optimization
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8b949e;font-style:italic"&gt;&lt;/span&gt; &lt;span style="color:#8b949e;font-style:italic"&gt;// - Performance requirements
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8b949e;font-style:italic"&gt;&lt;/span&gt; &lt;span style="color:#8b949e;font-style:italic"&gt;// - Compliance needs
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8b949e;font-style:italic"&gt;&lt;/span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="implementation-highlights"&gt;Implementation Highlights
+&lt;/h2&gt;&lt;h3 id="multi-provider-support"&gt;Multi-Provider Support
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AWS S3&lt;/strong&gt;: Primary storage for production workloads&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Google Cloud Storage&lt;/strong&gt;: Analytics and ML data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Azure Blob Storage&lt;/strong&gt;: Enterprise integration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Local Storage&lt;/strong&gt;: Development and testing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="smart-caching"&gt;Smart Caching
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Redis-based caching&lt;/strong&gt; for frequently accessed files&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CDN integration&lt;/strong&gt; for static assets&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent cache invalidation&lt;/strong&gt; strategies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="security--compliance"&gt;Security &amp;amp; Compliance
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Centralized authentication&lt;/strong&gt; with JWT tokens&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Role-based access control&lt;/strong&gt; (RBAC)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Encryption at rest and in transit&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audit logging&lt;/strong&gt; for compliance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="performance-optimization"&gt;Performance Optimization
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Parallel uploads&lt;/strong&gt; for large files&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chunked transfer&lt;/strong&gt; for better reliability&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Connection pooling&lt;/strong&gt; for efficiency&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Retry mechanisms&lt;/strong&gt; with exponential backoff&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="api-examples"&gt;API Examples
+&lt;/h2&gt;&lt;h3 id="upload-file"&gt;Upload File
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;"&gt;&lt;tr&gt;&lt;td style="vertical-align:top;padding:0;margin:0;border:0;"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;1
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;2
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;3
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;4
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;5
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -X POST &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; -H &lt;span style="color:#a5d6ff"&gt;&amp;#34;Authorization: Bearer &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;${&lt;/span&gt;&lt;span style="color:#79c0ff"&gt;TOKEN&lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;}&lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;&amp;#34;&lt;/span&gt; &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; -F &lt;span style="color:#a5d6ff"&gt;&amp;#34;file=@document.pdf&amp;#34;&lt;/span&gt; &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; -F &lt;span style="color:#a5d6ff"&gt;&amp;#34;path=/documents/2024/&amp;#34;&lt;/span&gt; &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; -F &lt;span style="color:#a5d6ff"&gt;&amp;#34;provider=auto&amp;#34;&lt;/span&gt; &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; https://api.filemanager.com/v1/upload
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="download-file"&gt;Download File
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;"&gt;&lt;tr&gt;&lt;td style="vertical-align:top;padding:0;margin:0;border:0;"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;1
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;2
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -X GET &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; -H &lt;span style="color:#a5d6ff"&gt;&amp;#34;Authorization: Bearer &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;${&lt;/span&gt;&lt;span style="color:#79c0ff"&gt;TOKEN&lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;}&lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;&amp;#34;&lt;/span&gt; &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; https://api.filemanager.com/v1/download/documents/2024/document.pdf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="list-files"&gt;List Files
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;"&gt;&lt;tr&gt;&lt;td style="vertical-align:top;padding:0;margin:0;border:0;"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;1
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;2
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#737679"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%"&gt;
+&lt;pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -X GET &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; -H &lt;span style="color:#a5d6ff"&gt;&amp;#34;Authorization: Bearer &lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;${&lt;/span&gt;&lt;span style="color:#79c0ff"&gt;TOKEN&lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;}&lt;/span&gt;&lt;span style="color:#a5d6ff"&gt;&amp;#34;&lt;/span&gt; &lt;span style="color:#79c0ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#79c0ff"&gt;&lt;/span&gt; &lt;span style="color:#a5d6ff"&gt;&amp;#34;https://api.filemanager.com/v1/list?prefix=/documents/2024/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="benefits-achieved"&gt;Benefits Achieved
+&lt;/h2&gt;&lt;h3 id="for-developers"&gt;For Developers
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Faster Development&lt;/strong&gt;: Single API to learn and use&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easier Testing&lt;/strong&gt;: Mock providers for unit tests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better Documentation&lt;/strong&gt;: Unified API documentation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="for-operations"&gt;For Operations
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Centralized Monitoring&lt;/strong&gt;: Single dashboard for all storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost Optimization&lt;/strong&gt;: Intelligent provider selection&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enhanced Security&lt;/strong&gt;: Centralized access control&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="for-business"&gt;For Business
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Faster Time to Market&lt;/strong&gt;: Reduced development complexity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost Savings&lt;/strong&gt;: Optimized storage costs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vendor Flexibility&lt;/strong&gt;: Easy provider switching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="monitoring--observability"&gt;Monitoring &amp;amp; Observability
+&lt;/h2&gt;&lt;h3 id="key-metrics"&gt;Key Metrics
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Request latency&lt;/strong&gt; per provider&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error rates&lt;/strong&gt; and failure patterns&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Storage costs&lt;/strong&gt; and usage patterns&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cache hit rates&lt;/strong&gt; and performance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="alerting"&gt;Alerting
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High error rates&lt;/strong&gt; from specific providers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unusual cost spikes&lt;/strong&gt; or usage patterns&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Performance degradation&lt;/strong&gt; alerts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Security incidents&lt;/strong&gt; and access violations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="future-enhancements"&gt;Future Enhancements
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AI-Powered Optimization&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Machine learning for provider selection&lt;/li&gt;
+&lt;li&gt;Predictive caching strategies&lt;/li&gt;
+&lt;li&gt;Automated cost optimization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Advanced Features&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;File versioning and history&lt;/li&gt;
+&lt;li&gt;Automated backup and replication&lt;/li&gt;
+&lt;li&gt;Content delivery network integration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Enterprise Features&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Multi-tenant support&lt;/li&gt;
+&lt;li&gt;Advanced compliance reporting&lt;/li&gt;
+&lt;li&gt;Integration with enterprise identity providers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="lessons-learned"&gt;Lessons Learned
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Start Simple&lt;/strong&gt;: Begin with core operations before adding complexity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Provider Differences&lt;/strong&gt;: Each cloud provider has unique characteristics&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error Handling&lt;/strong&gt;: Robust retry and fallback mechanisms are crucial&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Testing Strategy&lt;/strong&gt;: Comprehensive testing across all providers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Documentation&lt;/strong&gt;: Clear API documentation accelerates adoption&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="conclusion"&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;Building a universal file manager middleware has significantly simplified our cloud storage operations while providing flexibility and cost optimization. The abstraction layer allows teams to focus on business logic rather than provider-specific implementations.&lt;/p&gt;
+&lt;p&gt;The key to success is balancing simplicity with functionality, ensuring the middleware adds value without introducing unnecessary complexity.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;This architecture has been successfully deployed in production, handling millions of file operations daily across multiple cloud providers.&lt;/em&gt;&lt;/p&gt;</description></item></channel></rss>

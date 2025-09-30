@@ -1,17 +1,16 @@
 {
-  "name": "kowlon-tech-blog",
+  "name": "personal-blog",
   "version": "1.0.0",
   "description": "Personal tech blog built with Hugo and Stack theme",
   "scripts": {
-    "build": "hugo --minify",
     "dev": "hugo server -D",
     "clean": "rm -rf public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kowlon/personal-blog"
+    "url": "https://github.com/k0wl0n/personal-blog"
   },
   "keywords": ["hugo", "blog", "devops", "tech"],
-  "author": "Kowlon",
+  "author": "Wahyu Anggana (Kowlon)",
   "license": "MIT"
 }

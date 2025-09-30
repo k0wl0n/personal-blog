@@ -52,9 +52,19 @@ enableEmoji = true
   rssFullContent = true
   favicon = "/favicon.ico"
   
+  # Author information
+  [params.author]
+    name = "Wahyu Anggana"
+    nickname = "Kowlon"
+    email = ""
+    link = ""
+  
   [params.footer]
     since = 2024
-    customText = "Senior DevOps Engineer sharing technical insights"
+    customText = "© 2024 - 2025 Kowlon's Tech Blog"
+    [params.footer.author]
+      name = "Wahyu Anggana (Kowlon)"
+      link = ""
   
   [params.dateFormat]
     published = "Jan 02, 2006"
@@ -63,17 +73,39 @@ enableEmoji = true
   [params.sidebar]
     emoji = "🚀"
     subtitle = "DevOps Engineer & Cloud Architect"
-    avatar = "/images/avatar.jpg"
+    [params.sidebar.avatar]
+      enabled = true
+      local = true
+      src = "img/avatar.png"
+    [params.sidebar.author]
+      name = "Wahyu Anggana"
+      nickname = "Kowlon"
   
   [params.article]
     math = true
     toc = true
     readingTime = true
-    license = ""
+    [params.article.license]
+      enabled = false
+      default = ""
   
   [params.comments]
     enabled = false
   
   [params.widgets]
-    homepage = ["recent", "categories", "tag-cloud"]
-    page = ["toc"]
+    [[params.widgets.homepage]]
+      type = "search"
+    [[params.widgets.homepage]]
+      type = "archives"
+      [params.widgets.homepage.params]
+        limit = 5
+    [[params.widgets.homepage]]
+      type = "categories"
+      [params.widgets.homepage.params]
+        limit = 10
+    [[params.widgets.homepage]]
+      type = "tag-cloud"
+      [params.widgets.homepage.params]
+        limit = 10
+    [[params.widgets.page]]
+      type = "toc"
